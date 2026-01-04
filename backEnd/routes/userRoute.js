@@ -4,7 +4,7 @@ import { isAuthenticated } from "../middleware/isAuthenticated.js";
 
 const userRouter = express.Router();
 
-userRouter.route("/signUp").post(SignUp);
+userRouter.route("/register").post(SignUp);
 //or userRouter.post("/signUp", signUp);
 // but for this u need to redirect your path from main index.js to this page
 // like app.use("/users", userRoute);

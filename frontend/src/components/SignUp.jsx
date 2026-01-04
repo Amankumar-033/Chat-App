@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import axios from "axios";
 
 const SignUp = () => {
   const [user, setUser] = useState({
@@ -15,17 +16,28 @@ const SignUp = () => {
     setUser({...user, gender});
   }
 
-  const onSubmitHandler = (e)=> {
+  const onSubmitHandler = async (e)=> {
     e.preventDefault();
+    try{
+      const res = await axios.post(`http://localhost:5000/api/user/register`, user, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
+      });
+      console.log("user: ", user);
+      console.log("res: ", res);
+    }catch(error){
+      console.log(error);
+    }
+
      setUser({
     fullName : "",
     userName : "",
     password : "",
     confirmPassword : "",
     gender : "",
-  });
-    
-  }
+  });}
 
   return (
     <div className='min-w-96 max-auto'>
@@ -59,11 +71,11 @@ const SignUp = () => {
           <div className='flex items-center my-4'>
             <div className='flex items-center'>
               <p>Male</p>
-              <input type="checkbox" checked={user.gender === "male"} onChange={() => handleCheckBox("male")} defaultChecked className="checkbox mx-2" /> 
+              <input type="checkbox" checked={user.gender === "male"} onChange={() => handleCheckBox("male")} className="checkbox mx-2" /> 
             </div>
             <div className='flex items-center'>
               <p>Female</p>
-              <input type="checkbox" checked={user.gender === "female"} onChange={() => handleCheckBox("female")} defaultChecked className="checkbox mx-2" /> 
+              <input type="checkbox" checked={user.gender === "female"} onChange={() => handleCheckBox("female")} className="checkbox mx-2" /> 
             </div>
           </div>
           <div className='w-full mx-auto flex items-center text-center'>

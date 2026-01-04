@@ -13,7 +13,10 @@ const app = express();
 app.use(express.json());
 
 //middleware to allow cross origin request...
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:3000",  
+    credentials: true              
+}));
 
 //middleware to allow parsing from cookie from client side in server middleware logic
 app.use(cookieParser());
