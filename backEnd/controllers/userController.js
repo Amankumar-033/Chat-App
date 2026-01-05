@@ -5,6 +5,7 @@ import jwt from 'jsonwebtoken';
 
 //sign up for register logic...
 export const SignUp = async(req, res) => {
+    console.log("Backend received data:", req.body);
     try{
         const {fullName, userName, password, confirmPassword, gender} = req.body;
         

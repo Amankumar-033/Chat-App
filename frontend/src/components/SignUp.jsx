@@ -1,9 +1,12 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import axios from "axios";
+import toast from 'react-hot-toast';
 
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const [user, setUser] = useState({
     fullName : "",
     userName : "",
@@ -25,13 +28,16 @@ const SignUp = () => {
         },
         withCredentials: true
       });
-      console.log("user: ", user);
-      console.log("res: ", res);
+      
+      if(res.data.success){
+        navigate("/login");
+        toast.success(res.data.message);
+      }
     }catch(error){
       console.log(error);
     }
 
-     setUser({
+    setUser({
     fullName : "",
     userName : "",
     password : "",

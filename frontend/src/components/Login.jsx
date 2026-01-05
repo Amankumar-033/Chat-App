@@ -1,20 +1,46 @@
 import React from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import toast from "react-hot-toast";
+import axios from 'axios';
 
 const Login = () => {
 
-const [user, setUser] = useState({
+  const navigate = useNavigate();
+
+  const [user, setUser] = useState({
     userName : "",
     password : "",
   });
 
-  const onSubmitHandler = (e)=> {
+  const onSubmitHandler = async (e)=> {
     e.preventDefault();
-     setUser({
-    userName : "",
-    password : "",
-  });}
+    try{
+      const res = await axios.post(`http://localhost:5000/api/user/login`, user, {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        withCredentials: true
+      });
+      
+      if (res.data.success) {
+        toast.success(res.data.message);
+        navigate("/");
+    
+        setUser({
+            userName: "",
+            password: "",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      if (error.response) {
+          toast.error(error.response.data.message); 
+      } else {
+          toast.error("Something went wrong");
+      }
+    }
+  }
 
   return (
     <div className='min-w-96 max-auto'>
