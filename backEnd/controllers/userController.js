@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 
 //sign up for register logic...
 export const SignUp = async(req, res) => {
-    console.log("Backend received data:", req.body);
     try{
         const {fullName, userName, password, confirmPassword, gender} = req.body;
         
@@ -51,6 +50,7 @@ export const SignUp = async(req, res) => {
 
 export const login = async (req, res) => {
     try{
+        console.log(req.body);
         const {userName, password} = req.body;
 
         if(!userName || !password)
@@ -58,6 +58,7 @@ export const login = async (req, res) => {
 
         //Checking if this user exist in database or not...
         const user = await User.findOne({userName});
+
 
         //if the user doesnt exist...
         if(!user)
@@ -79,10 +80,12 @@ export const login = async (req, res) => {
             userName: user.userName,
             fullName: user.fullName,
             profilePhoto: user.profilePhoto,
+            success: true,
+            message: `Welcome back ${user.fullName}`
         });
     }
     catch(error){
-        console.log(error.message);
+        return res.status(500).json({ message: "Internal Server Error" });
     }
 }
 
