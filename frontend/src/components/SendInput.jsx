@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {IoSend} from "react-icons/io5";
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
+import { setMessages } from "../redux/messageSlice.js";
 
 const SendInput = () => {
 
@@ -13,7 +14,6 @@ const SendInput = () => {
 
   const onSubmitHandler = async (e) => {
     e.preventDefault();
-    alert(message);
     try{
         const res = await axios.post(`http://localhost:5000/api/message/send/${selectedUser?._id}`, {message}, {
           headers: {
@@ -22,7 +22,9 @@ const SendInput = () => {
           withCredentials: true
         });
         console.log("res: ", res);
-        dispatch(setMessage([...messages, res?.data?.newMessage]));
+        const currentMessages = messages || [];
+        dispatch(setMessages([...currentMessages, res.data.newMessage]));
+        setMessage("");
       }
     catch(error){
         console.log(error);
