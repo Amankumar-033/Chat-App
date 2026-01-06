@@ -3,7 +3,7 @@ import React from "react";
 const OtherUser = () => {
   return (
     <div>
-      <div className="flex items-center gap-2 hover:bg-zinc-200 rounded cursor-pointer p-2">
+      <div className="flex items-center gap-2 hover:bg-zinc-200 rounded cursor-pointer p-2 text-white hover:text-zinc-900">
         <div className="avatar online">
           <div className="w-12 rounded-full">
             <img
