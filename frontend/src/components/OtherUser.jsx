@@ -14,7 +14,7 @@ const OtherUser = ({user}) => {
 
   return (
     <>
-      <div onClick={() => selectedUserHandler(user)} className={` ${selectedUser?._id == user?._id ? 'bg-zinc-200' : ''} flex items-center gap-2 hover:bg-zinc-200 rounded cursor-pointer p-2 text-white hover:text-zinc-900`}>
+      <div onClick={() => selectedUserHandler(user)} className={` ${selectedUser?._id === user?._id ? 'bg-zinc-200' : ''} flex items-center gap-2 hover:bg-zinc-200 rounded cursor-pointer p-2 text-white hover:text-zinc-900`}>
         <div className="avatar online">
           <div className="w-12 rounded-full">
             <img
