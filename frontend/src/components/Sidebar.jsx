@@ -6,7 +6,7 @@ const Sidebar = () => {
     <div>
       <form action="" className='flex items-center gap-2'>
         <input className='input input-bordered rounded-md' type="text"  placeholder='Search...'/>
-        <button type='submit' className='btn bg-zinc-500'> <BiSearchAlt2 className='w-6 h-6 outline-none'/> </button>
+        <button type='submit' className='btn bg-zinc-500 text-white'> <BiSearchAlt2 className='w-6 h-6 outline-none'/> </button>
         </form>
     </div>
   )
