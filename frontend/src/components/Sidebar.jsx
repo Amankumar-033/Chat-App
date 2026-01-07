@@ -6,6 +6,10 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setOtherUsers } from "../redux/userSlice";
+import { setAuthUser } from "../redux/userSlice";
+import { setSocket } from "../redux/socketSlice";
+
+
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -20,6 +24,10 @@ const Sidebar = () => {
       const res = await axios.get(`http://localhost:5000/api/user/logout`);
       toast.success(res.data.message);
       navigate("/login");
+
+      dispatch(setAuthUser(null));    
+      dispatch(setOtherUsers(null));  
+      dispatch(setSocket(null));
     } catch (error) {
       console.log(error);
     }
