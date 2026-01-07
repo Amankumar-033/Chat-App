@@ -5,9 +5,9 @@ import { connectDB } from "./config/database.js";
 import userRouter from "./routes/userRoute.js";
 import messageRouter from "./routes/messageRoute.js"
 import cookieParser from "cookie-parser";
+import { app, server } from "./socket/socket.js";
 dotenv.config({});
 
-const app = express();
 
 //Middleware for parsing json string to req.body....
 app.use(express.json());
@@ -28,7 +28,7 @@ app.use("/api/user", userRouter);
 app.use("/api/message", messageRouter);
 
 
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     connectDB();
     console.log(`Welcome to my server ${PORT}`);
 })
