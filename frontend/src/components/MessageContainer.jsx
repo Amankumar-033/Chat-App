@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useEffect } from "react";
 import SendInput from "./SendInput";
 import Messages from "./Messages";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedUser } from "../redux/userSlice.js";
 
 const MessageContainer = () => {
+  const { selectedUser } = useSelector((store) => store.user);
+  const dispatch = useDispatch();
 
-  const {selectedUser} = useSelector(store=>store.user);
+  useEffect(() => {
+    return () => dispatch(setSelectedUser(null));
+  }, []);
 
   return (
+    <>
+    {
+      selectedUser !== null ? (
       <div className="md:min-w-[450px] flex flex-col">
         <div className="flex items-center gap-2 bg-zinc-800 text-white px-4 py-2 mb-2">
           <div className="avatar online">
             <div className="w-12 rounded-full">
-              <img
-                src={selectedUser?.profilePhoto}
-                alt="userProfilePicture"
-              />
+              <img src={selectedUser?.profilePhoto} alt="userProfilePicture" />
             </div>
           </div>
           <div className="flex flex-col flex-1">
@@ -24,9 +29,12 @@ const MessageContainer = () => {
             </div>
           </div>
         </div>
-        <Messages/>
-        <SendInput/>
+        <Messages />
+        <SendInput />
       </div>
+      ) : (<h1> Let's start a conversation </h1>)
+    }
+    </>
   );
 };
 
