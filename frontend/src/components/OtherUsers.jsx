@@ -3,16 +3,14 @@ import OtherUser from "./OtherUser";
 import useGetOtherUsers from "../hooks/useGetOtherUsers";
 import { useSelector } from "react-redux";
 
-const OtherUsers = () => {
-
+const OtherUsers = ({users}) => {
     useGetOtherUsers();
-    const {OtherUsers} = useSelector(store=>store.user);
-    if(!OtherUsers) return;
+    if (!users) return null;
 
   return (
     <div className="overflow-auto flex-1">
        {
-        OtherUsers?.map((user) => {
+        users?.map((user) => {
             return (
                 <OtherUser key={user._id} user={user}/>
             )
