@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setSelectedUser } from "../redux/userSlice.js";
 
 const MessageContainer = () => {
-  const { selectedUser } = useSelector((store) => store.user);
+  const { selectedUser, authUser  } = useSelector((store) => store.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,7 +32,11 @@ const MessageContainer = () => {
         <Messages />
         <SendInput />
       </div>
-      ) : (<h1> Let's start a conversation </h1>)
+      ) : 
+      <div className="md:min-w-[550px] flex flex-col justify-center items-center">
+         <h1> Hi, {authUser?.fullName} </h1>
+         <h1 className="text-2xl text-white"> Let's start a conversation </h1>
+      </div>
     }
     </>
   );
