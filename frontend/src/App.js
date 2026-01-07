@@ -5,9 +5,12 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import io from "socket.io-client";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { setSocket } from "./redux/socketSlice.js";
 import { setOnlineUsers } from "./redux/userSlice.js";
+
+
+
 
 const router = createBrowserRouter([
   {
@@ -27,7 +30,6 @@ const router = createBrowserRouter([
 function App() {
   const { authUser } = useSelector((store) => store.user);
   const dispatch = useDispatch();
-  const {socket} = useSelector(store=>store.socket);
 
   useEffect(() => {
     if (authUser) {
@@ -46,7 +48,7 @@ function App() {
         dispatch(setSocket(null)); // Redux state clear karega
       }
     }
-  }, [authUser]);
+  }, [authUser, dispatch]);
 
   return (
     <div className="p-4 h-screen flex items-center justify-center">

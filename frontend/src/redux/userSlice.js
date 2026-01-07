@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import OtherUser from "../components/OtherUser";
+
 
 const userSlice = createSlice({
     name: "user",
@@ -24,6 +24,7 @@ const userSlice = createSlice({
         }
     }
 });
+
 
 export const {setAuthUser, setOtherUsers, setSelectedUser, setOnlineUsers} = userSlice.actions;
 export default userSlice.reducer;

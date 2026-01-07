@@ -3,9 +3,12 @@ import Message from "./Message";
 import useGetMessages from "../hooks/useGetMessages";
 import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
+import useGetRealTimeMessage from "../hooks/useGetRealTimeMessages";
+
 
 const Messages = () => {
   useGetMessages();
+  useGetRealTimeMessage();
 
   const { messages } = useSelector((store) => store.message);
   const scroll = useRef();
@@ -13,8 +16,7 @@ const Messages = () => {
     scroll.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
-  if (!messages)
-    return <div className="px-4 flex-1 overflow-auto">Loading...</div>;
+  if (!messages) return <div className="px-4 flex-1 overflow-auto">Loading...</div>;
 
   return (
     <div className="px-4 flex-1 overflow-auto">
