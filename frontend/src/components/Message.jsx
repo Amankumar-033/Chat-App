@@ -3,6 +3,11 @@ import { useSelector } from "react-redux";
 const Message = ({ message }) => {
   const { authUser, selectedUser } = useSelector((store) => store.user);
 
+  const date = new Date(message?.createdAt);
+  const hours = date.getHours().toString().padStart(2, "0");
+  const minutes = date.getMinutes().toString().padStart(2, "0");
+  const formattedTime = `${hours}:${minutes}`;
+
   return (
     <div
       className={`chat ${
@@ -22,7 +27,7 @@ const Message = ({ message }) => {
         </div>
       </div>
       <div className="chat-header">
-        <time className="text-xs opacity-50 text-white">12:45</time>
+        <time className="text-xs opacity-50 text-white">{formattedTime}</time>
       </div>
       <div
         className={`chat-bubble ${
