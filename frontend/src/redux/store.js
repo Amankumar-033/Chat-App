@@ -30,14 +30,15 @@ const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
+
 const store = configureStore({
-  reducer: persistedReducer, 
+  reducer: persistedReducer,
+  // --- YAHAN SAB CHECKS BAND KAR DIYE HAIN ---
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      serializableCheck: {
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
+      serializableCheck: false,
     }),
 });
+
 
 export default store;

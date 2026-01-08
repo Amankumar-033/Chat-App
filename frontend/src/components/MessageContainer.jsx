@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 const MessageContainer = () => {
   const { selectedUser, authUser, onlineUsers } = useSelector((store) => store.user);
-  const isOnline = onlineUsers.includes(selectedUser._id);
+  const isOnline = onlineUsers?.includes(selectedUser?._id);
   
 
   return (
