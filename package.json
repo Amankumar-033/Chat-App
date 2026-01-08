@@ -4,9 +4,9 @@
   "description": "Root package.json for deployment",
   "main": "backEnd/index.js",
   "scripts": {
-    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
+    "build": "npm install && npm install --prefix backEnd && npm install --prefix frontend && npm run build --prefix frontend",
     "start": "node backEnd/index.js"
-  },
+},
   "dependencies": {
     "express": "^4.19.2",
     "socket.io": "^4.7.5",
