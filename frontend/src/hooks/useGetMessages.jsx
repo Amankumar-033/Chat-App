@@ -15,7 +15,7 @@ const useGetMessages = () => {
             
             if(!selectedUser) return;
 
-            const res = await axios.get(`http://localhost:5000/api/message/${selectedUser?._id}`);
+            const res = await axios.get(`https://chat-app-c21m.onrender.com/api/message/${selectedUser?._id}`);
             dispatch(setMessages(res.data));
         }catch(error){
             console.log(error);

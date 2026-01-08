@@ -15,7 +15,7 @@ const SendInput = () => {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try{
-        const res = await axios.post(`http://localhost:5000/api/message/send/${selectedUser?._id}`, {message}, {
+        const res = await axios.post(`https://chat-app-c21m.onrender.com/api/message/send/${selectedUser?._id}`, {message}, {
           headers: {
             'Content-Type': 'application/json',
           },

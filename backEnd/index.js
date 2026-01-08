@@ -15,11 +15,18 @@ const __dirname = path.resolve();
 app.use(express.json());
 
 //middleware to allow cross origin request...
+//middleware to allow cross origin request...
 const corsOptions = {
-    origin: process.env.NODE_ENV === "production" ? "https://your-app-url.onrender.com" : "http://localhost:3000",
+    // 👇 YAHAN ASLI URL DAALO (Jo tumhara live link hai)
+    origin: process.env.NODE_ENV === "production" 
+        ? "https://chat-app-c21m.onrender.com" 
+        : "http://localhost:3000",
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
 };
+
+
+app.use(cors(corsOptions))
 app.use(cors(corsOptions))
 
 //middleware to allow parsing from cookie from client side in server middleware logic

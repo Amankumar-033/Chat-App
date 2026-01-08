@@ -11,6 +11,7 @@ import { setSocket } from "../redux/socketSlice";
 
 
 
+
 const Sidebar = () => {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
@@ -21,7 +22,7 @@ const Sidebar = () => {
   const logoutHandler = async (req, res) => {
     try {
       axios.defaults.withCredentials = true;
-      const res = await axios.get(`http://localhost:5000/api/user/logout`);
+      const res = await axios.get(`https://chat-app-c21m.onrender.com/api/user/logout`);
       toast.success(res.data.message);
       navigate("/login");
 
