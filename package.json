@@ -2,10 +2,10 @@
   "name": "chat-app-root",
   "version": "1.0.0",
   "description": "Root package.json for deployment",
-  "main": "backend/index.js",
+  "main": "backEnd/index.js",
   "scripts": {
     "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend",
-    "start": "node backend/index.js"
+    "start": "node backEnd/index.js"
   },
   "dependencies": {
     "express": "^4.19.2",
